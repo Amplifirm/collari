@@ -6,7 +6,6 @@ interface Stage {
 }
 
 
-
 class Peep {
   image: HTMLImageElement;
   rect: number[];
@@ -124,7 +123,7 @@ const CrowdSparkHero = () => {
       };
 
       const normalWalk = ({ peep, props }: { peep: Peep; props: any }) => {
-        const {startY, endX } = props;
+        const {  startY, endX } = props;
         const xDuration = 10;
         const yDuration = 0.25;
 
@@ -205,8 +204,11 @@ const CrowdSparkHero = () => {
       };
 
       const initCrowd = () => {
-        while (availablePeeps.length) {
+        const maxPeeps = 48; // Limit the number of peeps
+        let count = 0;
+        while (availablePeeps.length && count < maxPeeps) {
           addPeepToCrowd().walk.progress(Math.random());
+          count++;
         }
       };
 
@@ -359,14 +361,16 @@ const CrowdSparkHero = () => {
           marginBottom: '1.5rem',
           fontFamily: "'Outfit', sans-serif"
         }}>
-          Collective{' '}
-          <span style={{
-            background: 'linear-gradient(135deg, #006239 0%, #00a86b 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            brainstorming
+          <span style={{ whiteSpace: 'nowrap' }}>
+            Collective{' '}
+            <span style={{
+              background: 'linear-gradient(135deg, #006239 0%, #00a86b 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>
+              brainstorming
+            </span>
           </span>
           <br />
           <span style={{ color: '#9ca3af' }}>for creative teams</span>
